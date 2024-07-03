@@ -5,13 +5,15 @@ const CRUDops = ({ itemData, setItemData }) => {
   const [newItem, setNewItem] = useState({
     id: '',
     name: '',
-    addTime: '',
-    cost: ''
+    description: '',
+    price: '',
+    categoryName: '',
+    imageId: 0
   });
 
   const handleCreate = async () => {
     try {
-      const url = 'http://localhost:8080/api/v1/users/tradeitems';
+      const url = 'http://localhost:8080/api/pizza/product';
       const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -24,7 +26,7 @@ const CRUDops = ({ itemData, setItemData }) => {
       }
       const createdItem = await response.json();
       setItemData([...newItem, createdItem]);
-      setNewItem({ id: '', name: '', addTime: '', cost: '' });
+      setNewItem({ id: '', name: '', description: '', price: '', categoryName: '', imageId: 0});
     } catch (error) {
       console.error(error);
     }
@@ -32,7 +34,8 @@ const CRUDops = ({ itemData, setItemData }) => {
 
   const handleUpdate = async () => {
     try {
-      const url = 'http://localhost:8080/api/v1/users/tradeitems';
+      const id = localStorage.getItem('id')
+      const url = `http://localhost:8080/api/pizza/product/${id}`;
       const response = await fetch(url, {
         method: 'PUT',
         headers: {
@@ -48,7 +51,7 @@ const CRUDops = ({ itemData, setItemData }) => {
 		item.id === updatedItem.id ? updatedItem : item
 	  );
 	  setItemData(updatedData);
-	  setNewItem({ id: '', name: '', addTime: '', cost: '' });
+	  setNewItem({ id: '', name: '', description: '', price: '', categoryName: '', imageId: 0});
 	} catch (error) {
 	  console.error(error);
     }
@@ -56,7 +59,8 @@ const CRUDops = ({ itemData, setItemData }) => {
 
   const handleDelete = async () => {
 	try {
-	  const url = 'http://localhost:8080/api/v1/users/tradeitems/';
+    const id = localStorage.getItem('id')
+	  const url = `http://localhost:8080/api/pizza/product/${id}`;
 	  const response = await fetch(url, {
         method: 'PUT',
         headers: {
@@ -69,7 +73,7 @@ const CRUDops = ({ itemData, setItemData }) => {
 	  }
 	  const updatedData = itemData.filter((item) => item.id !== newItem.id);
 	  setItemData(updatedData);
-	  setNewItem({ id: '', name: '', addTime: '', cost: '' });
+	  setNewItem({ id: '', name: '', description: '', price: '', categoryName: '', imageId: 0});
 	} catch (error) {
 	  console.error(error);
 	}
@@ -105,15 +109,27 @@ const CRUDops = ({ itemData, setItemData }) => {
         />
         <input
           type='text'
-          placeholder='Add Time'
-          value={newItem.addTime}
-          onChange={(e) => setNewItem({ ...newItem, addTime: e.target.value })}
+          placeholder='Description'
+          value={newItem.description}
+          onChange={(e) => setNewItem({ ...newItem, description: e.target.value })}
         />
         <input
           type='text'
-          placeholder='Cost'
-          value={newItem.cost}
-          onChange={(e) => setNewItem({ ...newItem, cost: e.target.value })}
+          placeholder='Price'
+          value={newItem.price}
+          onChange={(e) => setNewItem({ ...newItem, price: e.target.value })}
+        />
+        <input
+          type='text'
+          placeholder='Category name'
+          value={newItem.categoryName}
+          onChange={(e) => setNewItem({ ...newItem, categoryName: e.target.value })}
+        />
+        <input
+          type='text'
+          placeholder='Image'
+          value={newItem.imageId}
+          onChange={(e) => setNewItem({ ...newItem, imageId: e.target.value })}
         />
       </div>
     </div>

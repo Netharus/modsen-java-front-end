@@ -13,11 +13,14 @@ const Header = () => {
 					<a className='text-white hover:text-gray-300' href='/dashboard'>
 						Main page
 					</a>
+					<a className='text-white hover:text-gray-300' href='/createOrder'>
+						Create order
+					</a>
 					<a className='text-white hover:text-gray-300' href='/profile'>
 						Profile
 					</a>
 					{localStorage.getItem('auth') === 'true' && (
-						<a
+						<a href='logout'
 							className='text-white hover:text-gray-300'
 							onClick={handleLogout}
 						>

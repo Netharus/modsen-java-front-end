@@ -43,7 +43,7 @@ const Auth = () => {
 				console.error(error)
 			}
 		} else {
-			const url = 'http://localhost:8080/api/pizza/auth/sign-up'
+			const url = 'http://localhost:8080/api/pizza/auth/register'
 
 			const registerData = {
 				email: email,
@@ -66,7 +66,6 @@ const Auth = () => {
 				if (!response.ok) {
 					throw new Error('Registration request failed.')
 				}
-				const data = await response.json()
 				window.location.href = '/'
 			} catch (error) {
 				console.error(error)

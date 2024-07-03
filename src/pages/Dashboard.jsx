@@ -1,13 +1,16 @@
 import React from 'react'
 import Header from '../components/Header'
-import DataTable from '../components/DataTable'
+import ProductTable from '../components/ProductTable'
+import CRUDops from '../components/CRUDops'
+
 
 const Dashboard = () => {
+
 	return (
 		<div>
 			<Header />
-			<DataTable
-				cellsName={['Id', 'Name', 'Cost', 'Add time', 'Image']}
+			<ProductTable
+				cellsName={['Id', 'Name', 'Price', 'Description', 'Image', 'Category']}
 				cellsData={[]}
 			/>
 		</div>
