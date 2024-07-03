@@ -27,7 +27,7 @@ const CreateOrder = () => {
 		setTableData(data);
 	  } catch (error) {
 		console.error(error);
-		console.log(error); // Log the error response
+		console.log(error); 
 	  }
   };
 
