@@ -22,6 +22,7 @@ const Auth = () => {
 			const loginData = {
 				username: username,
 				password: password,
+				email: email
 			}
 
 			const requestOptions = {
@@ -36,14 +37,16 @@ const Auth = () => {
 					throw new Error('Login request failed.')
 				}
 				const data = await response.json()
-				localStorage.setItem('accessToken', data.accessToken)
+				localStorage.setItem('id', data.id)
 				localStorage.setItem('username', data.username)
+				localStorage.setItem('email', data.email)
+				localStorage.setItem('token', data.accessToken)
 				window.location.href = '/profile'
 			} catch (error) {
 				console.error(error)
 			}
 		} else {
-			const url = 'http://localhost:8080/api/pizza/auth/register'
+			const url = 'http://localhost:8080/api/pizza/auth/sign-up'
 
 			const registerData = {
 				email: email,
@@ -81,8 +84,8 @@ const Auth = () => {
 						label='Email'
 						variant='outlined'
 						fullWidth
-						value={email}
-						onChange={e => setEmail(e.target.value)}
+						value={username}
+						onChange={e => setUsername(e.target.value)}
 					/>
 				</div>
 				<div className='mb-4'>
