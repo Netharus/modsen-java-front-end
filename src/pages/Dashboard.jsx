@@ -13,6 +13,7 @@ const Dashboard = () => {
 				cellsName={['Id', 'Name', 'Price', 'Description', 'Image', 'Category']}
 				cellsData={[]}
 			/>
+			<CRUDops></CRUDops>
 		</div>
 	)
 }

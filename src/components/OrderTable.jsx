@@ -1,4 +1,4 @@
-import { Button, Stack } from '@mui/material';
+import { Button, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import React, { useState } from 'react';
   
   
@@ -75,7 +75,37 @@ import React, { useState } from 'react';
 
 	  return (
 		<div>
-		  <div className='mt-4 flex justify-around'>
+		  <div>
+			<br></br>
+			<input
+			  type='text'
+			  placeholder='ID'
+			  value={newItem.id}
+			  onChange={(e) => setNewItem({newItem, id: e.target.value })}
+			/>
+		  </div>
+		  <div>
+          <h2>Your Order:</h2>
+		  <TableContainer>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Order ID</TableCell>
+                <TableCell>Product ID</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {itemData.map((item) => (
+                <TableRow key={item.id}>
+                  <TableCell>{item.orderId}</TableCell>
+                  <TableCell>{item.productId}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+		</div>
+		<div className='mt-4 flex justify-around'>
 			<Stack spacing={2} direction='row'>
 			  <Button variant='outlined' onClick={handleCreateOrder}>
 				Create
@@ -88,17 +118,6 @@ import React, { useState } from 'react';
 			  </Button>
 			</Stack>
 		  </div>
-		  <div>
-			<input
-			  type='text'
-			  placeholder='ID'
-			  value={newItem.id}
-			  onChange={(e) => setNewItem({newItem, id: e.target.value })}
-			/>
-		  </div>
-		  <div>
-          <h2>Your Order:</h2>
-		</div>
 		</div>
 	  );
 	};

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import ProductTable from '../components/ProductTable';
+import OrderTable from '../components/OrderTable';
 
 const CreateOrder = () => {
   const [searchText, setSearchText] = useState('');
@@ -56,6 +57,7 @@ const CreateOrder = () => {
 				cellsName={['Id', 'Name', 'Price', 'Description', 'Image', 'Category']}
 				cellsData={[]}
 			/>
+      <OrderTable></OrderTable>
     </div>
   );
 };
